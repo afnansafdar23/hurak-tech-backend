@@ -1,0 +1,107 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Safeway Boxes API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/generate-box": {
+            "post": {
+                "tags": [
+                    "Boxes"
+                ],
+                "summary": "Create a box (payload)",
+                "description": "Create a new Box from JSON payload, store it in DB and return it.",
+                "operationId": "4a6e46a29aee49ee7418c870ebf0e7fc",
+                "requestBody": {
+                    "description": "Box creation payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "height",
+                                    "width",
+                                    "color"
+                                ],
+                                "properties": {
+                                    "height": {
+                                        "description": "Height in px or units",
+                                        "type": "integer",
+                                        "example": 150
+                                    },
+                                    "width": {
+                                        "description": "Width in px or units",
+                                        "type": "integer",
+                                        "example": 200
+                                    },
+                                    "color": {
+                                        "description": "Hex code or color name",
+                                        "type": "string",
+                                        "example": "#A1B2C3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Box created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "height": {
+                                                    "type": "integer",
+                                                    "example": 150
+                                                },
+                                                "width": {
+                                                    "type": "integer",
+                                                    "example": 200
+                                                },
+                                                "color": {
+                                                    "type": "string",
+                                                    "example": "#A1B2C3"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string",
+                                                    "example": "2025-08-21 17:30:12"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "string",
+                                                    "example": "2025-08-21 17:30:12"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Boxes",
+            "description": "Boxes"
+        }
+    ]
+}
